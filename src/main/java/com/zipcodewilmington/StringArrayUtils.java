@@ -92,8 +92,33 @@ public class StringArrayUtils {
      * @return true if each letter in the alphabet has been used in the array
      */ // TODO
     public static boolean isPangramic(String[] array) {
-        System.out.println('a' > 'Z');
-        return false;
+        boolean indeedPangramic = false;
+        boolean[] pangramCheck = new boolean[26];
+        String inputIntoString = "";
+
+        for(int i = 0; i < array.length; i++) {
+            inputIntoString += array[i];
+        }
+
+        int index = 0;
+        for(int i = 0; i < inputIntoString.length(); i++) {
+            if ('A' <= inputIntoString.charAt(i) && inputIntoString.charAt(i) <= 'Z') {
+                index = inputIntoString.charAt(i) - 'A';
+            } else if ('a' <= inputIntoString.charAt(i) && inputIntoString.charAt(i) <= 'z') {
+                index = inputIntoString.charAt(i) - 'a';
+            }
+            pangramCheck[index] = true;
+        }
+
+        for(int i = 0; i <= 25; i++) {
+            if (!pangramCheck[i]) {
+                indeedPangramic = false;
+                break;
+            } else indeedPangramic = true;
+        }
+
+        return indeedPangramic;
+
     }
 
     /**
